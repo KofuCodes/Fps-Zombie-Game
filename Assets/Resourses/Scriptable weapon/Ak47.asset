@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1087b01b0cf6e9f409c1b30a08a49e9a, type: 3}
-  m_Name: HK USP
+  m_Name: Ak47
   m_EditorClassIdentifier: 
-  name: HK USP
-  description: a sexy pistol
-  icon: {fileID: 21300000, guid: f17e9303242da0f49a3a95170845c994, type: 3}
-  prefab: {fileID: 5432840531933996534, guid: c92dd944fa041294c9ab4c6ecd7c40d4, type: 3}
-  magazineSize: 12
-  magazineCount: 4
+  name: Ak47
+  description: 
+  icon: {fileID: 21300000, guid: 6f5340656ac04554fa344e3928151e42, type: 3}
+  prefab: {fileID: 919132149155446097, guid: a5910f2ee1fb0be4abe90c417240dcdf, type: 3}
+  magazineSize: 31
+  magazineCount: 5
   range: 75
-  weaponType: 1
-  weaponStyle: 1
+  weaponType: 2
+  weaponStyle: 0

@@ -4,15 +4,46 @@ using UnityEngine;
 
 public class inventory : MonoBehaviour
 {
-    public items[] weapons;
+    [SerializeField] private Weapon[] weapons;
+
+    private Playerhud hud;
 
     private void Start()
     {
+        getref();
         InitVariables();
+    }
+
+    public void AddItem(Weapon newItem)
+    {
+        int newItemIndex = (int)newItem.weaponStyle;
+
+        if (weapons[newItemIndex] != null)
+        {
+            RemoveItem(newItemIndex);
+        }
+        weapons[newItemIndex] = newItem;
+
+        hud.UpdateWeaponUi(newItem);
+    }
+
+    public void RemoveItem(int index)
+    {
+        weapons[index] = null;
+    }
+
+    public Weapon GetItem(int index)
+    {
+        return weapons[index];
     }
 
     private void InitVariables()
     {
-        weapons = new items[1];
+        weapons = new Weapon[3];
+    }
+
+    private void getref()
+    {
+        hud = GetComponent<Playerhud>();
     }
 }
