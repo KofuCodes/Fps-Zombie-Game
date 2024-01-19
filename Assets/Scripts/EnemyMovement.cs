@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] Transform m_Target;
+    [SerializeField] GameObject m_Target;
     [SerializeField] float m_Speed;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        m_Target = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
         var step = m_Speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, m_Target.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, m_Target.transform.position, step);
     }
 }
