@@ -8155,6 +8155,7 @@ MonoBehaviour:
   fpsCam: {fileID: 8984079357240088476}
   muzzleFlash: {fileID: 8646083191562270134}
   impactEffect: {fileID: 4626375821462719871}
+  timerAmount: 2
 --- !u!4 &2859054093871023005
 Transform:
   m_ObjectHideFlags: 0

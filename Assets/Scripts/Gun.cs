@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Rendering;
 
 public class Gun : MonoBehaviour
 {
@@ -17,15 +19,25 @@ public class Gun : MonoBehaviour
 
     private float nextTimeToFire = 0;
     private int ammo = 0;
+    [SerializeField] float timerAmount = 10;
+    private float reloadTimer = 0;
 
     void Start()
     {
         ammo = magAmmo;
+        reloadTimer = timerAmount;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (reloadTimer >= timerAmount)
+        {
+            reloadTimer = timerAmount;
+        } else
+        {
+            reloadTimer += Time.deltaTime;
+        }
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
@@ -38,8 +50,9 @@ public class Gun : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.R) && ammo < 12)
+        if (Input.GetKey(KeyCode.R) && ammo < 12 && reloadTimer >= timerAmount)
         {
+            reloadTimer = 0;
             ammo = magAmmo;
             ammoCount.GetComponent<TMP_Text>().text = $"{ammo}";
         }
