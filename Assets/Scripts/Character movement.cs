@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Charactermovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
+    [SerializeField] private float maxStamina = 100f; // The maximum stamina
+    [SerializeField] private float stamina = 100f; // The current stamina
+    [SerializeField] private float staminaConsumptionRate = 10f; // Stamina consumed per second while running
+    [SerializeField] private float staminaRegenerationRate = 5f;
     [SerializeField] private float jumpForce;
     private Vector3 moveDir = Vector3.zero;
     private CharacterController controller;
@@ -16,8 +21,10 @@ public class Charactermovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private bool isCharacterGrounded = false;
     private Vector3 velocity = Vector3.zero;
+    [SerializeField] private Slider staminaBar;
 
     private Animator anim;
+    private PlayerStats stats;
 
     private void Start()
     {
@@ -32,6 +39,8 @@ public class Charactermovement : MonoBehaviour
         HandleGravity();
 
         HandleRunning();
+        RegenerateStamina();
+        UpdateStaminaBar();
         HandleMovement();
         HandleAnimation();
     }
@@ -45,19 +54,46 @@ public class Charactermovement : MonoBehaviour
         moveDir = moveDir.normalized;
         moveDir = transform.TransformDirection(moveDir);
 
-        controller.Move(moveDir * moveSpeed * Time.deltaTime);
+        if (!stats.IsDead())
+        {
+            controller.Move(moveDir * moveSpeed * Time.deltaTime);
+        }
     }
 
     private void HandleRunning()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && stamina > 0)
         {
             moveSpeed = runSpeed;
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+        {
+            stamina -= staminaConsumptionRate * Time.deltaTime;
+            stamina = Mathf.Max(stamina, 0); // Ensure stamina doesn't go below 0
+            if (stamina <= 0)
+            {
+                moveSpeed = walkSpeed; // Force the player to walk if stamina is depleted
+            }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             moveSpeed = walkSpeed;
         }
+    }
+
+    private void RegenerateStamina()
+    {
+        if (moveSpeed == walkSpeed && stamina < maxStamina)
+        {
+            stamina += staminaRegenerationRate * Time.deltaTime;
+            stamina = Mathf.Min(stamina, maxStamina); // Prevent stamina from exceeding maxStamina
+        }
+    }
+
+    private void UpdateStaminaBar()
+    {
+        // Update the stamina bar's value to reflect the current stamina
+        staminaBar.value = stamina;
     }
 
     private void HandleAnimation()
@@ -104,6 +140,9 @@ public class Charactermovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+        stats = GetComponent<PlayerStats>();
+        staminaBar.maxValue = maxStamina;
+        staminaBar.value = stamina;
     }
 
     private void InitVariables()

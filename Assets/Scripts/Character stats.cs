@@ -13,6 +13,7 @@ public class Characterstats : MonoBehaviour
     {
         InitVariables();
     }
+
     public virtual void CheckHealth()
     {
         if (health <=0)
@@ -26,9 +27,14 @@ public class Characterstats : MonoBehaviour
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         isDead = true;
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 
     private void SetHealthTo(int healthToSetTo)

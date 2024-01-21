@@ -1,37 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
-public class SpawnObject : MonoBehaviour
+public class WaveSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject spawnObject;
-    private float timer = 0;
-    [SerializeField] float spawnRate = 5;
-    [SerializeField] int spawnAmount;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject enemyPrefab;
+    public float initialSpawnDelay = 2f;  // Initial delay between enemy spawns
+    public float spawnDelay;  // This will be adjusted during gameplay
+
+    private void Start()
     {
-        
+        spawnDelay = initialSpawnDelay;
+        InvokeRepeating("SpawnEnemyWave", 0f, spawnDelay);
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnEnemyWave()
     {
-        Spawn();
-    }
-
-    void Spawn()
-    {
-        if (timer < spawnRate)
-        {
-            timer += Time.deltaTime;
-        }
-        else if (timer >= spawnRate && spawnAmount > 0)
-        {
-            timer = 0;
-            Instantiate(spawnObject, transform.position, transform.rotation);
-            spawnAmount--;
-        }
+        Instantiate(enemyPrefab, transform.position, transform.rotation);
     }
 }

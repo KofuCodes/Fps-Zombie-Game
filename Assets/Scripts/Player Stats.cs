@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStats : Characterstats
 {
     private Playerhud Hud;
+    private UiManager ui;
 
     private void Start()
     {
@@ -15,19 +16,23 @@ public class PlayerStats : Characterstats
     private void GetReferences()
     {
         Hud = GetComponent<Playerhud>();
+        ui = GetComponent<UiManager>();
     }
-
     public override void CheckHealth()
     {
         base.CheckHealth();
         Hud.UpdateHealth(health, maxHealth);
+        if (health <= 0)
+        {
+            health = 0;
+            isDead = true;
+            Die();
+        }
     }
 
-    private void Update()
+    public override void Die()
     {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(10);
-        }
+        base.Die();
+        ui.SetActiveHud(false);
     }
 }

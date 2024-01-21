@@ -16,6 +16,11 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         var step = m_Speed * Time.deltaTime;
+
+        // Move towards the player
         transform.position = Vector3.MoveTowards(transform.position, m_Target.transform.position, step);
+
+        // Rotate to face the player
+        transform.LookAt(m_Target.transform.position);
     }
 }

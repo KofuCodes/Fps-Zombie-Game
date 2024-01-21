@@ -6,24 +6,24 @@ using TMPro;
 
 public class Progressbar : MonoBehaviour
 {
-    private int baseValue;
-    private int maxValue;
+    private float baseValue;
+    private float maxValue;
     [SerializeField] private Image fill;
     [SerializeField] private TextMeshProUGUI amount;
 
-    public void SetValues(int _baseValue, int _maxValue)
+    public void SetValues(float _baseValue, float _maxValue)
     {
         baseValue = _baseValue;
         maxValue = _maxValue;
 
-        amount.text = baseValue.ToString();
+        amount.text = baseValue.ToString("0.##") + "/" + maxValue.ToString("0.##");
 
         CalculateFillAmount();
     }
 
     private void CalculateFillAmount()
     {
-        float fillAmount = (float)baseValue / (float)maxValue;
+        float fillAmount = baseValue / maxValue;
         fill.fillAmount = fillAmount;
     }
 }
