@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.028462086, g: 0.2996052, b: 0.4944356, a: 1}
+  m_IndirectSpecularColor: {r: 0.028314177, g: 0.29962164, b: 0.49432078, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10425,19 +10425,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &312931346889400016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738535070325651496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1726f65a130e92349807813224d671f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapons: []
 --- !u!4 &325124001665736517
 Transform:
   m_ObjectHideFlags: 0
@@ -10605,7 +10592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 129338857}
-  weaponUi: {fileID: 1452593184}
 --- !u!4 &516814081711095648
 Transform:
   m_ObjectHideFlags: 0
@@ -11228,8 +11214,6 @@ GameObject:
   - component: {fileID: 1922547391663604643}
   - component: {fileID: 515444734899382499}
   - component: {fileID: 3725563147121688720}
-  - component: {fileID: 312931346889400016}
-  - component: {fileID: 8775802864775640499}
   - component: {fileID: 8775802864775640500}
   - component: {fileID: 8775802864775640501}
   m_Layer: 0
@@ -34909,22 +34893,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2300523666558942372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8775802864775640499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738535070325651496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9bbadc41e29e1648b75919212fc2da3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickUpRange: 5
-  pickUpLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &8775802864775640500
 MonoBehaviour:
   m_ObjectHideFlags: 0

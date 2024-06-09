@@ -7,16 +7,16 @@ using TMPro;
 public class Playerhud : MonoBehaviour
 {
     [SerializeField] private Progressbar healthBar;
-    [SerializeField] private WeaponUI weaponUi;
+    //[SerializeField] private WeaponUI weaponUi;
 
     public void UpdateHealth(int currentHealth, int maxHealth)
     {
         healthBar.SetValues(currentHealth, maxHealth);
     }
 
-    public void UpdateWeaponUi(Weapon newWeapon)
+    /*public void UpdateWeaponUi(Weapon newWeapon)
     {
          weaponUi.UpdateInfo(newWeapon.icon, newWeapon.magazineSize, newWeapon.magazineCount);
     }
-
+    */
 }

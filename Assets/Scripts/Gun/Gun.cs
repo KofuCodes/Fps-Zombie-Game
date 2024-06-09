@@ -97,7 +97,7 @@ public class Gun : MonoBehaviour
             {
                 if (hit.transform.gameObject == Head)
                 {
-                    target.TakeDamage(damage * 3); // Triple damage for headshot
+                    target.TakeDamage(damage * 3); // Triple damage for headshot doesn't work
                 }
                 else
                 {
